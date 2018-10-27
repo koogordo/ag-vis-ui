@@ -11,14 +11,14 @@ h6 {
 .top-bar {
   width: 100%;
   height: 65px;
-  background-color: rgba(48, 127, 255, 0.734);
+  background-color: rgba(48, 127, 255, 1);
   border-radius: 2px;
   -webkit-box-shadow: -1px 25px 73px -15px rgba(199, 199, 199, 1);
   -moz-box-shadow: -1px 25px 73px -15px rgba(199, 199, 199, 1);
   box-shadow: -1px 25px 73px -15px rgba(199, 199, 199, 1);
 }
 .top-bar-brand {
-  width: 5%;
+  width: 7%;
   height: 100%;
 }
 .top-bar-item {
@@ -29,11 +29,20 @@ h6 {
   margin: auto;
   font-size: 1.5em;
   text-decoration: none;
-  color: rgba(250, 250, 250, 1);
+  color: rgba(48, 255, 144, 1);
+  transition: 0.2s;
+  letter-spacing: -1px;
 }
+
 .top-bar-link {
   margin: auto;
-  font-size: 1.2em;
+  font-size: 0.9em;
   text-decoration: none;
-  color: rgba(250, 250, 250, 1);
+  color: rgba(48, 255, 144, 1);
+  transition: 0.2s;
+  letter-spacing: -1px;
+}
+.top-bar-link:hover,
+.top-bar-brand-link:hover {
+  filter: brightness(0.865);
 }
