@@ -6,8 +6,8 @@
 }
 
 .cover-banner {
-  width: 50%;
-  height: 350px;
+  width: 40%;
+  height: 200px;
 }
 
 .cover-title {
@@ -17,10 +17,5 @@
 
 .cover-button {
   width: 60%;
-}
-.left {
-  margin-left: auto;
-}
-.right {
-  margin-right: auto;
+  margin: auto;
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 declare var $: any;
 @Component({
   selector: 'app-home',
