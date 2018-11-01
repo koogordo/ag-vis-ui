@@ -1,0 +1,19 @@
+.cover {
+  min-height: 640px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover-banner {
+  width: 50%;
+  height: 350px;
+}
+
+.cover-title {
+  font-size: 6em;
+  text-align: center;
+}
+
+.cover-button {
+}
