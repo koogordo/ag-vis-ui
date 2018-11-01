@@ -16,4 +16,11 @@
 }
 
 .cover-button {
+  width: 60%;
+}
+.left {
+  margin-left: auto;
+}
+.right {
+  margin-right: auto;
 }
