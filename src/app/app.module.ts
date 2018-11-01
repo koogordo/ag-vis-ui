@@ -15,6 +15,9 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { AccountComponent } from './account/account.component';
+import { SensordiagnosticComponent } from './sensordiagnostic/sensordiagnostic.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     DashComponent,
     DocumentationComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    AccountComponent,
+    SensordiagnosticComponent,
+    HelpComponent
   ],
   imports: [BrowserModule, FlexLayoutModule, AppRoutingModule, NgbModule],
   providers: [],
