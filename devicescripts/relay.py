@@ -27,8 +27,12 @@ class Relay:
         return self._pin
     
     @property
-    def type(self)
+    def type(self):
         return self._type
+        
+    @property
+    def active(self):
+        return self._active
     
     def off(self):
 
