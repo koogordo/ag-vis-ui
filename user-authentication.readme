@@ -1,0 +1,15 @@
+For any pages that require the user to be authenticated, include this on the page.
+
+<?php
+  require_once 'users/init.php';  //make sure this path is correct!
+  require_once $abs_us_root.$us_url_root.'users/includes/header.php';
+  require_once $abs_us_root.$us_url_root.'users/includes/navigation.php';
+  if(isset($user) && $user->isLoggedIn()){
+    // Do something if authenticated
+    echo $webpage;
+  }
+  else
+  {
+    // DO something if not authenticated
+  }
+?>
