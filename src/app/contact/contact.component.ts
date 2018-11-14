@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -14,6 +13,13 @@ export class ContactComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    let button = document.getElementById('submit_btn');
+    button.onclick = this.submit_button;
+
   }
 
+  public submit_button() {
+  alert(this.complaint);
 }
+}
+

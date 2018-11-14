@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 //bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -33,7 +33,7 @@ import { HelpComponent } from './help/help.component';
     SensordiagnosticComponent,
     HelpComponent
   ],
-  imports: [BrowserModule, FlexLayoutModule, AppRoutingModule, NgbModule],
+  imports: [BrowserModule, FlexLayoutModule, AppRoutingModule, NgbModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
