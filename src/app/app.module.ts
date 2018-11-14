@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -18,7 +18,7 @@ import { AccountComponent } from './account/account.component';
 import { SensordiagnosticComponent } from './sensordiagnostic/sensordiagnostic.component';
 import { HelpComponent } from './help/help.component';
 import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
-import {ChartsModule} from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.component';
 
 @NgModule({
@@ -37,7 +37,14 @@ import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.
     MyBarChartComponent,
     MyDoughnutChartComponent
   ],
-  imports: [BrowserModule, FlexLayoutModule, AppRoutingModule, NgbModule, ChartsModule],
+  imports: [
+    BrowserModule,
+    FlexLayoutModule,
+    AppRoutingModule,
+    NgbModule,
+    ChartsModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
