@@ -16,14 +16,19 @@
         </p>
         <p class="lead">
           <a class="btn btn-info btn-lg" href="#" role="button">Learn more</a>
-          <a class="btn btn-info btn-lg ml-3" href="#" role="button"
+          <a
+            class="btn btn-info btn-lg ml-3"
+            href="#"
+            role="button"
+            data-toggle="modal"
+            data-target="#exampleModal"
             >Sign Up!</a
           >
         </p>
       </div>
     </div>
     <div class="col-lg-6">
-      <form>
+      <form [formGroup]="loginForm" (submit)="login()">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input
@@ -32,6 +37,7 @@
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter email"
+            formControlName="email"
           />
           <small id="emailHelp" class="form-text text-muted"
             >We'll never share your email with anyone else.</small
@@ -44,6 +50,7 @@
             class="form-control"
             id="exampleInputPassword1"
             placeholder="Password"
+            formControlName="password"
           />
         </div>
         <div class="form-group">
@@ -80,7 +87,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form [formGroup]="registerForm" (submit)="register()">
               <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
                 <input
@@ -88,7 +95,8 @@
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter your first name..."
+                  formControlName="firstName"
                 />
               </div>
               <div class="form-group">
@@ -98,7 +106,8 @@
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter your last name..."
+                  formControlName="lastName"
                 />
               </div>
               <div class="form-group">
@@ -109,6 +118,7 @@
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Enter email"
+                  formControlName="email"
                 />
                 <small id="emailHelp" class="form-text text-muted"
                   >We'll never share your email with anyone else.</small
@@ -121,6 +131,7 @@
                   class="form-control"
                   id="exampleInputPassword1"
                   placeholder="Password"
+                  formControlName="password"
                 />
               </div>
 
@@ -131,6 +142,7 @@
                   class="form-control"
                   id="exampleInputPassword1"
                   placeholder="Password"
+                  formControlName="confPass"
                 />
               </div>
 

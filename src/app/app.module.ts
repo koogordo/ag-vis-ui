@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -43,7 +43,8 @@ import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.
     AppRoutingModule,
     NgbModule,
     ChartsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
