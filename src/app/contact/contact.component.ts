@@ -8,6 +8,7 @@ export class ContactComponent implements OnInit {
 
   public Username = 'Your name';
   public Useremail = 'Your email';
+  public Subject = 'Subject Line';
   public complaint = 'Your Questions/Comments';
 
   constructor() { }
