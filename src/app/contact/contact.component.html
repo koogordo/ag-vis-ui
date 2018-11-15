@@ -7,8 +7,8 @@
         </h1>
       </div>
     </div>
-    <div class="container-fluid jumbotron mt-lg">
-      <div class="row container-fluid">
+    <div class="row">
+      <div class=" jumbotron mt-lg container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12">
           <p>
             Name
@@ -27,8 +27,8 @@
           </p>
           <textarea class="textarea form-control" name="complaint" [(ngModel)] = "complaint"></textarea>
         </div>
-        <div id="submit_btn">
-          <button class="btn-primary" id="submit_btn" value="Click" onclick ="submit_button()">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <button class="btn-primary" (click)="submit_button()">
             Submit
           </button>
         </div>

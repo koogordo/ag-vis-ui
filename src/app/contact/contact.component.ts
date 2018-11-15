@@ -13,13 +13,10 @@ export class ContactComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let button = document.getElementById('submit_btn');
-    button.onclick = this.submit_button;
-
   }
 
   public submit_button() {
-  alert(this.complaint);
-}
+    alert(this.Username);
+  }
 }
 

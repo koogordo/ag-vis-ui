@@ -4,6 +4,6 @@ p{
 textarea{
    min-height: 200px;
 }
-#submit_btn{
-   padding: 1%;
+.btn-primary{
+   margin-top: 15px;
 }
