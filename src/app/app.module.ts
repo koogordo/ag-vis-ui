@@ -22,6 +22,8 @@ import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.component';
 
+import { ApiService } from './_services/api.service';
+import { AuthBridgeService } from './_services/bridges/auth-bridge.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,7 @@ import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService, AuthBridgeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

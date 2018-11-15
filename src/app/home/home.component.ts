@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ApiService } from '../_services/api.service';
+import { AuthBridgeService } from '../_services/bridges/auth-bridge.service';
+
 declare var $: any;
 @Component({
   selector: 'app-home',
@@ -45,39 +49,32 @@ export class HomeComponent implements OnInit {
     password: new FormControl('', Validators.required),
     confPass: new FormControl('', Validators.required)
   });
-  constructor(private http: HttpClient) {}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private authSwitch: AuthBridgeService
+  ) {}
 
   ngOnInit() {}
 
   public login() {
-    /*
-     * TODO
-     * validate form
-     * call backend to log user in
-     * get login result and act accordingly
-     */
-    let body = new HttpParams()
-      .set('email', this.loginForm.value.email)
-      .set('password', this.loginForm.value.password);
-    // console.log(JSON.stringify(this.registerForm.value));
-    // let data = JSON.stringify(this.registerForm.value);
-    this.http
-      .post(
-        'http://192.168.64.2:80/login.php',
-        body.toString(),
-        this.httpOptions
-      )
-      .subscribe(res => {
-        console.log(res);
+    if (this.loginForm.status === 'VALID') {
+      let body = new HttpParams()
+        .set('username', this.loginForm.value.email)
+        .set('password', this.loginForm.value.password);
+      this.api.login(body).subscribe(res => {
+        let auth = JSON.parse(JSON.stringify(res));
+        if (auth.loggedIn) {
+          console.log(auth);
+          this.router.navigateByUrl('/dash');
+        }
       });
+    } else {
+      console.log({ status: 'fail', message: 'Invalid form' });
+    }
   }
+
   public register() {
-    /*
-     * TODO
-     * validate form
-     * call backend to register user
-     * get register result and act accordingly
-     */
     if (this.registerForm.status === 'VALID') {
       let body = new HttpParams()
         .set('firstName', this.registerForm.value.firstName)
@@ -87,15 +84,9 @@ export class HomeComponent implements OnInit {
         .set('confPass', this.registerForm.value.confPass);
       // console.log(JSON.stringify(this.registerForm.value));
       // let data = JSON.stringify(this.registerForm.value);
-      this.http
-        .post(
-          'http://192.168.64.2:80/register.php',
-          body.toString(),
-          this.httpOptions
-        )
-        .subscribe(res => {
-          console.log(res);
-        });
+      this.api.register(body).subscribe(res => {
+        console.log(res);
+      });
       this.registerForm.reset();
     } else {
       console.log({ status: 'fail', message: 'Invalid form' });
