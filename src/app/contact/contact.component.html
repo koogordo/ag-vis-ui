@@ -1,7 +1,7 @@
 <section class="cover">
   <div class="cover-banner">
     <div class="row">
-      <div class="jumbotron mt-lg container-fluid">
+      <div class="jumbotron container-fluid">
         <h1 class="text-center">
           Contact Us
         </h1>
@@ -9,9 +9,10 @@
     </div>
     <div class="split left">
       <div class="row">
-        <div class="jumbotron mt-lg container-fluid">
-          <p>
-            Here's some example text to see if the split is working.
+        <div class="jumbotron container-fluid">
+          <h1 class="h1">Talk to us</h1>
+          <p id="info">
+            We want to help you and to do that we need some input from you. Please contact us with any questions or comments that you have.
           </p>
         </div>
       </div>
@@ -23,25 +24,25 @@
             <p>
               Name
             </p>
-            <input type="text" name="Username" class="input form-control" [(ngModel)] = "Username">
+            <input type="text" name="Username" class="input form-control" [(ngModel)] = "Username" placeholder="Your Name">
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <p>
               Email
             </p>
-            <input type="email" name="Useremail" class="input form-control" [(ngModel)] = "Useremail">
+            <input type="email" name="Useremail" class="input form-control" [(ngModel)] = "Useremail" placeholder="Your Email">
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
               <p>
                 Subject
               </p>
-              <input type="text" name="Subject" class="input form-control" [(ngModel)] = "Subject">
+              <input type="text" name="Subject" class="input form-control" [(ngModel)] = "Subject" placeholder="Subject Line">
             </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <p>
               Your Questions/Comments
             </p>
-            <textarea class="textarea form-control" name="complaint" [(ngModel)] = "complaint"></textarea>
+            <textarea class="textarea form-control" name="complaint" [(ngModel)] = "complaint" placeholder="Questions and Comments"></textarea>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <button class="btn-primary" (click)="submit_button()">

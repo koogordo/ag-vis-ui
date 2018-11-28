@@ -7,12 +7,27 @@ textarea{
 .btn-primary{
    margin-top: 15px;
 }
+.row{
+   margin-left: 0;
+   margin-right: 0;
+}
 .split {
    height: 100%;
    width: 50%;
    float: left;
    overflow-x: hidden;
    padding-top: 20px;
+ }
+ #info{
+    margin: 50px;
+ }
+
+.mt-lg{
+   padding-top: 1rem;
+}
+
+ .h1{
+    text-align: center;
  }
  
  /* Control the left side */

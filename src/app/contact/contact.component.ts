@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
+declare function emailer(a, b, c, d): any;
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -6,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  public Username = 'Your name';
-  public Useremail = 'Your email';
-  public Subject = 'Subject Line';
-  public complaint = 'Your Questions/Comments';
+  public Username = '';
+  public Useremail = '';
+  public Subject = '';
+  public complaint = '';
+
 
   constructor() { }
 
@@ -17,7 +21,8 @@ export class ContactComponent implements OnInit {
   }
 
   public submit_button() {
-    alert(this.Username);
+    emailer(this.Useremail, this.Subject, this.Username, this.complaint);
+    alert('Email Sent');
   }
 }
 
