@@ -15,7 +15,7 @@ export class ApiService {
     // console.log(JSON.stringify(this.registerForm.value));
     // let data = JSON.stringify(this.registerForm.value);
     return this.http.post(
-      'http://192.168.64.2:80/register.php',
+      'http://plantpi.workstations.winona.edu/users/join.php',
       body.toString(),
       this.httpOptions
     );
