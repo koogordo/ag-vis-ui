@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from '../_services/api.service';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthCheckService } from '../_services/auth-check.service';
+
 declare var $: any;
 @Component({
   selector: 'app-home',

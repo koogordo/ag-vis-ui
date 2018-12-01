@@ -23,7 +23,6 @@ import { ChartsModule } from 'ng2-charts';
 import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.component';
 
 import { ApiService } from './_services/api.service';
-import { AuthCheckService } from './_services/auth-check.service';
 
 import { CookieService } from 'ngx-cookie-service';
 @NgModule({
