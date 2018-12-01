@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-  <a class="navbar-brand blue-link" routerLink="">SensAG</a>
+  <a class="navbar-brand blue-link" routerLink="/dash">SensAG</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -14,19 +14,26 @@
 
   <div class="collapse navbar-collapse" id="probootstrap-nav">
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item abs-center">
+        <a routerLink="/about" class="nav-link abs-center">About</a>
+      </li>
+      <li class="nav-item abs-center">
+        <a routerLink="/contact" class="nav-link abs-center">Contact</a>
+      </li>
       <li class="nav-item dropdown">
         <a
-          class="nav-link dropdown-toggle"
+          class="nav-link dropdown-toggle text-light"
           href="#"
           id="navbarDropdownMenuLink"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i class="fa fa-user"></i> {{ user.email }}
+          <i class="fa fa-user text-info"></i> {{ user.email }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Manage</a>
+          <a class="dropdown-item" routerLink="/dash">Dashboard</a>
           <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </li>

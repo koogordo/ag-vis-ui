@@ -27,6 +27,7 @@ import { MyPolarChartComponent } from './my-polar-chart/my-polar-chart.component
 import { ApiService } from './_services/api.service';
 
 import { CookieService } from 'ngx-cookie-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { CookieService } from 'ngx-cookie-service';
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [ApiService, CookieService],
   bootstrap: [AppComponent]

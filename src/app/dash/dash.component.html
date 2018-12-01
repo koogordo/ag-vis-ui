@@ -1,38 +1,134 @@
 <app-non-auth-top-bar *ngIf="!authenticated"></app-non-auth-top-bar>
 <app-auth-top-bar *ngIf="authenticated"></app-auth-top-bar>
+<div *ngIf="!dataLoading; else: loadingScreen">
+  <div class="container"></div>
 
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" (click)="onClickBar()">Bar Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" (click)="onClickDonut()">Doughnut Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" (click)="onClickLine()">Line Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" (click)="onClickPolar()">Polar Chart</a>
-    </li>
-  </ul>
-</div>
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-2">
-      <div class="sidenav" >
-        <a (click)="a" class="blue-link">Daily</a>
-        <a (click)="b" class="blue-link">Weekly</a>
-        <a (click)="c" class="blue-link">Monthly</a>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3">
+        <!-- 1. inline datepicker -->
+        <h6 class="mt-3 date-picker-label">From:</h6>
+        <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group" id="startDate">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="startDate"
+                [(ngModel)]="startDateStruct"
+                ngbDatepicker
+                #startDate="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-info calendar"
+                  (click)="startDate.toggle()"
+                >
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <h6 class="mt-2 date-picker-label">To:</h6>
+        <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group" id="endDate">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="endDate"
+                [(ngModel)]="endDateStruct"
+                ngbDatepicker
+                #endDate="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-info calendar"
+                  (click)="endDate.toggle()"
+                >
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!--
+          <div
+            class="nav flex-column nav-pills"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            <a
+              *ngFor="let sensor of sensors"
+              class="nav-link mt-3 btn btn-info"
+              id="{{sensor.type}}"
+              data-toggle="pill"
+              href="#v-pills-home"
+              role="tab"
+              aria-controls="v-pills-home"
+              aria-selected="true"
+              (click)="setChartData($event.target.id)"
+              >{{ setSensorButtonText(sensor.type) }}</a
+            >
+          </div>
+        -->
+        <div ngbDropdown class="d-inline-block mt-3">
+          <button class="btn btn-info" id="dropdownBasic1" ngbDropdownToggle>
+            View Sensor
+          </button>
+          <div ngbDropdownMenu>
+            <button
+              *ngFor="let sensor of sensors"
+              class="dropdown-item"
+              id="{{sensor.type}}"
+              (click)="setChartData($event.target.id)"
+            >
+              {{ setSensorButtonText(sensor.type) }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" (click)="onClickBar()">Bar Chart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onClickDonut()">Doughnut Chart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onClickLine()">Line Chart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onClickPolar()">Polar Chart</a>
+          </li>
+        </ul>
+        <app-my-bar-chart
+          [chartData]="chartData"
+          *ngIf="barChart"
+        ></app-my-bar-chart>
+        <app-my-doughnut-chart
+          [chartData]="chartData"
+          *ngIf="donutChart"
+        ></app-my-doughnut-chart>
+        <app-my-line-chart
+          [chartData]="chartData"
+          *ngIf="lineChart"
+        ></app-my-line-chart>
+        <app-my-polar-chart
+          [chartData]="chartData"
+          *ngIf="polarChart"
+        ></app-my-polar-chart>
       </div>
     </div>
-    <div class="col-lg-8">
-      <app-my-bar-chart *ngIf="barChart"></app-my-bar-chart>
-      <app-my-doughnut-chart *ngIf="donutChart"></app-my-doughnut-chart>
-      <app-my-line-chart *ngIf="lineChart"></app-my-line-chart>
-      <app-my-polar-chart *ngIf="polarChart"></app-my-polar-chart>
-    </div>
-    <div class="col-lg-2"></div>
   </div>
 </div>
+<ng-template #loadingScreen>
+  <div class="browser-screen-loading-content">
+    <h4 class="text-info">Preparing Report</h4>
+    <div class="loading-dots dark-gray">
+      <i></i> <i></i> <i></i> <i></i>
+    </div></div
+></ng-template>

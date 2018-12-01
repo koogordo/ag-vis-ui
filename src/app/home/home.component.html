@@ -1,5 +1,4 @@
-<app-non-auth-top-bar *ngIf="!authenticated"></app-non-auth-top-bar>
-<app-auth-top-bar *ngIf="authenticated"></app-auth-top-bar>
+<app-non-auth-top-bar></app-non-auth-top-bar>
 <div class="container-fluid">
   <section class="row home-section">
     <div class="col-lg-6">
@@ -15,7 +14,9 @@
           ensure maximum lead and mercury content.
         </p>
         <p class="lead">
-          <a class="btn btn-info btn-lg" routerLink="/about" role="button">Learn more</a>
+          <a class="btn btn-info btn-lg" routerLink="/about" role="button"
+            >Learn more</a
+          >
           <a
             class="btn btn-outline-info btn-lg ml-3"
             href="#"
