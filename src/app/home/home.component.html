@@ -1,3 +1,5 @@
+<app-non-auth-top-bar *ngIf="!authenticated"></app-non-auth-top-bar>
+<app-auth-top-bar *ngIf="authenticated"></app-auth-top-bar>
 <div class="container-fluid">
   <section class="row home-section">
     <div class="col-lg-6">
@@ -116,23 +118,23 @@
               <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Enter your first name..."
-                  formControlName="firstName"
+                  placeholder="Enter your first..."
+                  formControlName="fname"
                   [ngClass]="
-                    registerForm.controls.firstName.errors &&
-                    registerForm.controls.firstName.touched
+                    registerForm.controls.fname.errors &&
+                    registerForm.controls.fname.touched
                       ? ['border', 'border-danger']
                       : []
                   "
                 />
                 <small
                   *ngIf="
-                    registerForm.controls.firstName.errors &&
-                    registerForm.controls.firstName.touched
+                    registerForm.controls.fname.errors &&
+                    registerForm.controls.fname.touched
                   "
                   id="emailHelp"
                   class="form-text text-danger"
@@ -144,23 +146,23 @@
               <div class="form-group">
                 <label for="exampleInputEmail1">Last Name</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Enter your last name..."
-                  formControlName="lastName"
+                  formControlName="lname"
                   [ngClass]="
-                    registerForm.controls.lastName.errors &&
-                    registerForm.controls.lastName.touched
+                    registerForm.controls.lname.errors &&
+                    registerForm.controls.lname.touched
                       ? ['border', 'border-danger']
                       : []
                   "
                 />
                 <small
                   *ngIf="
-                    registerForm.controls.lastName.errors &&
-                    registerForm.controls.lastName.touched
+                    registerForm.controls.lname.errors &&
+                    registerForm.controls.lname.touched
                   "
                   id="emailHelp"
                   class="form-text text-danger"

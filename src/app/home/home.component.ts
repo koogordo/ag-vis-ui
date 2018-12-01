@@ -4,8 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from '../_services/api.service';
-import { AuthBridgeService } from '../_services/bridges/auth-bridge.service';
-
+import { CookieService } from 'ngx-cookie-service';
+import { AuthCheckService } from '../_services/auth-check.service';
 declare var $: any;
 @Component({
   selector: 'app-home',
@@ -14,6 +14,8 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
   // login form control center
+  private authenticated = true;
+  private user;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -26,7 +28,7 @@ export class HomeComponent implements OnInit {
 
   // register form control center
   private registerForm = new FormGroup({
-    firstName: new FormControl(
+    fname: new FormControl(
       '',
       Validators.compose([
         Validators.required,
@@ -34,7 +36,7 @@ export class HomeComponent implements OnInit {
         Validators.maxLength(100)
       ])
     ),
-    lastName: new FormControl(
+    lname: new FormControl(
       '',
       Validators.compose([
         Validators.required,
@@ -52,10 +54,30 @@ export class HomeComponent implements OnInit {
   constructor(
     private api: ApiService,
     private router: Router,
-    private authSwitch: AuthBridgeService
+    private cookieService: CookieService,
+    private authService: AuthCheckService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.cookieService.check('login')) {
+      const user = JSON.parse(JSON.stringify(this.cookieService.get('login')));
+      this.user = user;
+      let body = new HttpParams()
+        .set('username', user.email)
+        .set('password', user.hash);
+
+      this.api.checkLogin(body).subscribe(loggedIn => {
+        const result = JSON.parse(JSON.stringify(loggedIn));
+        if (result.validated) {
+          this.authenticated = true;
+        } else {
+          this.authenticated = false;
+        }
+      });
+    } else {
+      this.authenticated = false;
+    }
+  }
 
   public login() {
     if (this.loginForm.status === 'VALID') {
@@ -64,8 +86,9 @@ export class HomeComponent implements OnInit {
         .set('password', this.loginForm.value.password);
       this.api.login(body).subscribe(res => {
         let auth = JSON.parse(JSON.stringify(res));
+        console.log(auth);
         if (auth.loggedIn) {
-          console.log(auth);
+          this.cookieService.set('login', JSON.stringify(auth));
           this.router.navigateByUrl('/dash');
         }
       });
@@ -77,8 +100,8 @@ export class HomeComponent implements OnInit {
   public register() {
     if (this.registerForm.status === 'VALID') {
       let body = new HttpParams()
-        .set('firstName', this.registerForm.value.firstName)
-        .set('lastName', this.registerForm.value.lastName)
+        .set('fname', this.registerForm.value.fname)
+        .set('lname', this.registerForm.value.lname)
         .set('email', this.registerForm.value.email)
         .set('password', this.registerForm.value.password)
         .set('confPass', this.registerForm.value.confPass);

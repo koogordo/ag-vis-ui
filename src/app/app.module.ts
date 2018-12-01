@@ -23,7 +23,9 @@ import { ChartsModule } from 'ng2-charts';
 import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.component';
 
 import { ApiService } from './_services/api.service';
-import { AuthBridgeService } from './_services/bridges/auth-bridge.service';
+import { AuthCheckService } from './_services/auth-check.service';
+
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,7 @@ import { AuthBridgeService } from './_services/bridges/auth-bridge.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ApiService, AuthBridgeService],
+  providers: [ApiService, AuthCheckService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

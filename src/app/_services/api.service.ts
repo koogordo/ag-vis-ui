@@ -34,11 +34,19 @@ export class ApiService {
     );
   }
 
-  logout() {
+  public logout() {
     console.log('button click');
     let body = new HttpParams();
     return this.http.post(
       'http://192.168.64.2:80/logout.php',
+      body.toString(),
+      this.httpOptions
+    );
+  }
+
+  public checkLogin(body) {
+    return this.http.post(
+      'http://plantpi.workstations.winona.edu/users/sessioncheck.php',
       body.toString(),
       this.httpOptions
     );

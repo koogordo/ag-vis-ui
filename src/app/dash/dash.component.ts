@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from '../_services/api.service';
+import { AuthCheckService } from '../_services/auth-check.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
@@ -15,9 +17,34 @@ export class DashComponent implements OnInit {
       'Content-Type': 'application/x-www-form-urlencoded'
     })
   };
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private authService: AuthCheckService,
+    private cookieService: CookieService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.cookieService.check('login')) {
+      const user = JSON.parse(JSON.stringify(this.cookieService.get('login')));
+      this.user = user;
+      let body = new HttpParams()
+        .set('username', user.email)
+        .set('password', user.hash);
+
+      this.api.checkLogin(body).subscribe(loggedIn => {
+        const result = JSON.parse(JSON.stringify(loggedIn));
+        if (result.validated) {
+          this.authenticated = true;
+        } else {
+          this.authenticated = false;
+        }
+      });
+    } else {
+      this.authenticated = false;
+      this.router.navigateByUrl('');
+    }
+  }
 
   logout() {
     console.log('button click');
