@@ -29,7 +29,6 @@ export class DashComponent implements OnInit {
   constructor(
     private api: ApiService,
     private router: Router,
-    private authService: AuthCheckService,
     private cookieService: CookieService
   ) {}
 
