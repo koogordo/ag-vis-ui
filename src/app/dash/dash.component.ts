@@ -48,7 +48,6 @@ export class DashComponent implements OnInit {
       });
     } else {
       this.authenticated = false;
-      this.router.navigateByUrl('');
     }
   }
 

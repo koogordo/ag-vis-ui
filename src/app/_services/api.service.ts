@@ -15,7 +15,7 @@ export class ApiService {
     // console.log(JSON.stringify(this.registerForm.value));
     // let data = JSON.stringify(this.registerForm.value);
     return this.http.post(
-      'http://plantpi.workstations.winona.edu/users/registration.php',
+      'http://plantpi.workstations.winona.edu/users/signup.php',
       body.toString(),
       this.httpOptions
     );
