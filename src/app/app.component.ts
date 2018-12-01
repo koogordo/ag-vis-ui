@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthBridgeService } from './_services/bridges/auth-bridge.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,15 +16,7 @@ export class AppComponent implements OnInit {
       'Content-Type': 'application/x-www-form-urlencoded'
     })
   };
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private authSwitch: AuthBridgeService
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit() {
-    this.authSwitch.switch.subscribe(state => {
-      this.authenticated = state;
-    });
-  }
+  ngOnInit() {}
 }

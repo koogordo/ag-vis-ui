@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-my-doughnut-chart',
@@ -6,14 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-doughnut-chart.component.css']
 })
 export class MyDoughnutChartComponent implements OnInit {
-
+  @Input() chartData;
   public doughnutChartLabels = ['Sales 1', 'Sales 2', 'Sales 3', 'Sales 4'];
 
   public doughnutChartData = [120, 150, 180, 90];
   public doughnutChartType = 'doughnut';
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

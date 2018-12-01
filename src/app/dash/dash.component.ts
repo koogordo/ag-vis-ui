@@ -5,7 +5,12 @@ import { Router } from '@angular/router';
 import { ApiService } from '../_services/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MyBarChartComponent } from '../my-bar-chart/my-bar-chart.component';
-
+import {
+  NgbDateAdapter,
+  NgbDateNativeAdapter,
+  NgbDateStruct
+} from '@ng-bootstrap/ng-bootstrap';
+declare var $: any;
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
@@ -16,11 +21,15 @@ export class DashComponent implements OnInit {
   private user;
   private sensorOverTime;
   private sensors;
-  public barChart = true;
+  private dateAdapter = new NgbDateNativeAdapter();
+  private startDateStruct: NgbDateStruct;
+  private endDateStruct: NgbDateStruct;
+  public barChart = false;
   public donutChart = false;
   public lineChart = false;
   public polarChart = false;
-
+  private dataLoading = true;
+  private chartData;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -30,7 +39,30 @@ export class DashComponent implements OnInit {
     private api: ApiService,
     private router: Router,
     private cookieService: CookieService
-  ) {}
+  ) {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentDay = currentDate.getDate();
+    console.log(currentYear);
+    console.log(currentMonth);
+    console.log(currentDay);
+    this.endDateStruct = {
+      year: currentYear,
+      month: currentMonth,
+      day: currentDay
+    };
+    const date = new Date();
+    const prevDate = new Date(date.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const prevYear = prevDate.getFullYear();
+    const prevMonth = prevDate.getMonth() + 1;
+    const prevDay = prevDate.getDate();
+    this.startDateStruct = {
+      year: prevYear,
+      month: prevMonth,
+      day: prevDay
+    };
+  }
 
   ngOnInit() {
     if (this.cookieService.check('login')) {
@@ -56,7 +88,9 @@ export class DashComponent implements OnInit {
       this.api.getSensors(getSensorBody).subscribe(res => {
         const result = JSON.parse(JSON.stringify(res));
         if (result) {
-          this.sensors = res;
+          console.log(result);
+          this.sensors = result;
+          this.setChartData(this.sensors[0].type);
         } else {
           console.error("Sensor didn't load properly");
         }
@@ -74,6 +108,7 @@ export class DashComponent implements OnInit {
       let resStatus = JSON.parse(JSON.stringify(res));
       if (resStatus.status === 'success') {
         console.log(resStatus);
+        this.authenticated = false;
         this.router.navigateByUrl('/');
       }
     });
@@ -105,5 +140,45 @@ export class DashComponent implements OnInit {
     this.barChart = false;
     this.donutChart = false;
     this.polarChart = true;
+  }
+
+  private setChartData(type) {
+    this.dataLoading = true;
+    const nativeStartDate = this.dateAdapter.toModel(this.startDateStruct);
+    const nativeEndDate = this.dateAdapter.toModel(this.endDateStruct);
+    const startDate = new Date(nativeStartDate).getTime() / 1000;
+    const endDate = new Date(nativeEndDate).getTime() / 1000;
+    const duration = endDate - startDate;
+    const outputParams = {
+      email: this.user.email,
+      start: startDate,
+      duration: duration,
+      site: 'Winona',
+      sensorType: type
+    };
+    console.log(outputParams);
+    const reqBody = new HttpParams()
+      .set('start', `${startDate}`)
+      .set('email', this.user.email)
+      .set('duration', `${duration}`)
+      .set('site', 'Winona')
+      .set('sensorType', type);
+    this.api.sensorOverTime(reqBody).subscribe(data => {
+      const result = JSON.parse(JSON.stringify(data));
+      console.log(result);
+      this.chartData = result;
+      this.onClickBar();
+      this.dataLoading = false;
+    });
+  }
+
+  private setSensorButtonText(type) {
+    if (type === 'DHT11') {
+      return type;
+    } else if (type === 'relay') {
+      return 'Relay';
+    } else if (type === 'watersensor') {
+      return 'Water Sensor';
+    }
   }
 }

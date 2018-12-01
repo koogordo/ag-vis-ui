@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-my-polar-chart',
@@ -6,23 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-polar-chart.component.css']
 })
 export class MyPolarChartComponent implements OnInit {
-
+  @Input() chartData;
   public polarChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true,
+    responsive: true
   };
 
   public polarChartLabels = ['2006', '2007', '2008', '2009'];
   public polarChartType = 'polarArea';
   public polarChartLegend = true;
 
-  public polarChartData = [
-    {data: [65, 59, 80, 97], label: 'Series A'}
-];
+  public polarChartData = [{ data: [65, 59, 80, 97], label: 'Series A' }];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
