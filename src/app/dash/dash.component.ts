@@ -9,7 +9,6 @@ import { MyBarChartComponent } from '../my-bar-chart/my-bar-chart.component';
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
-  template: '<app-dash [childMessage]="parentMessage"></app-child>',
   styleUrls: ['./dash.component.css']
 })
 export class DashComponent implements OnInit {
