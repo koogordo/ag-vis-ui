@@ -1,29 +1,13 @@
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/dash/bar-chart">Bar Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/dash/doughnut-chart">Doughnut Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/radar-chart"> Radar Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/pie-chart">Pie Chart</a>
-    </li>
-  </ul>
-</div>
-
-<div>
-  <div style="display: block">
+<div style="display: block" >
     <canvas 
-    baseChart
-    [datasets]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [legend]="barChartLegend"
-    [chartType]="barChartType">
-    </canvas>
-  </div>
-</div>
+      baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+      </canvas>
+ </div>
+      
+  
+
