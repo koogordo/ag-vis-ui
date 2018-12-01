@@ -54,8 +54,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private api: ApiService,
     private router: Router,
-    private cookieService: CookieService,
-    private authService: AuthCheckService
+    private cookieService: CookieService
   ) {}
 
   ngOnInit() {

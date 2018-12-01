@@ -55,7 +55,7 @@ import { CookieService } from 'ngx-cookie-service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ApiService, AuthCheckService, CookieService],
+  providers: [ApiService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
