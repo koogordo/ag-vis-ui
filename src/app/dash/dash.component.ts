@@ -24,6 +24,7 @@ export class DashComponent implements OnInit {
   private dateAdapter = new NgbDateNativeAdapter();
   private startDateStruct: NgbDateStruct;
   private endDateStruct: NgbDateStruct;
+  private requestParams = {};
   public barChart = false;
   public donutChart = false;
   public lineChart = false;
@@ -149,23 +150,15 @@ export class DashComponent implements OnInit {
     const startDate = new Date(nativeStartDate).getTime() / 1000;
     const endDate = new Date(nativeEndDate).getTime() / 1000;
     const duration = endDate - startDate;
-    const outputParams = {
-      email: this.user.email,
-      start: startDate,
-      duration: duration,
-      site: 'Winona',
-      sensorType: type
-    };
-    console.log(outputParams);
     const reqBody = new HttpParams()
-      .set('start', `${startDate}`)
+      .set('from', `${startDate}`)
+      .set('to', `${duration}`)
       .set('email', this.user.email)
-      .set('duration', `${duration}`)
       .set('site', 'Winona')
-      .set('sensorType', type);
+      .set('sensor', type);
+
     this.api.sensorOverTime(reqBody).subscribe(data => {
       const result = JSON.parse(JSON.stringify(data));
-      console.log(result);
       this.chartData = result;
       this.onClickBar();
       this.dataLoading = false;

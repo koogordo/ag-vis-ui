@@ -12,7 +12,7 @@ export class MyBarChartComponent implements OnInit {
     responsive: true
   };
 
-  public barChartLabels = ['2006', '2007', '2008', '2009'];
+  public barChartLabels = [];
   public barChartType = 'bar';
   public barChartLegend = true;
 
