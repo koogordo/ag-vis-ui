@@ -14,6 +14,8 @@ import { MyBarChartComponent } from '../my-bar-chart/my-bar-chart.component';
 export class DashComponent implements OnInit {
   private authenticated = false;
   private user;
+  private sensorOverTime;
+  private sensors;
   public barChart = true;
   public donutChart = false;
   public lineChart = false;
@@ -44,10 +46,22 @@ export class DashComponent implements OnInit {
           this.authenticated = true;
         } else {
           this.authenticated = false;
+          this.router.navigateByUrl('');
+        }
+      });
+      const getSensorBody = new HttpParams().set('email', this.user.email);
+      console.log(getSensorBody);
+      this.api.getSensors(getSensorBody).subscribe(res => {
+        const result = JSON.parse(JSON.stringify(res));
+        if (result) {
+          console.log(result);
+        } else {
+          console.log('response failure');
         }
       });
     } else {
       this.authenticated = false;
+      this.router.navigateByUrl('');
     }
   }
 

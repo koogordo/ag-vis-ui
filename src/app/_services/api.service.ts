@@ -51,4 +51,20 @@ export class ApiService {
       this.httpOptions
     );
   }
+
+  public sensorOverTime(body) {
+    return this.http.post(
+      'http://plantpi.workstations.winona.edu/data.php',
+      body.toString(),
+      this.httpOptions
+    );
+  }
+
+  public getSensors(body) {
+    return this.http.post(
+      'http://plantpi.workstations.winona.edu/sensors.php',
+      body.toString(),
+      this.httpOptions
+    );
+  }
 }

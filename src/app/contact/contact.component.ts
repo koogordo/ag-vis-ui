@@ -41,7 +41,6 @@ export class ContactComponent implements OnInit {
       });
     } else {
       this.authenticated = false;
-      this.router.navigateByUrl('');
     }
   }
 
