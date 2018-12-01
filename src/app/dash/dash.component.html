@@ -1,10 +1,5 @@
 <app-non-auth-top-bar *ngIf="!authenticated"></app-non-auth-top-bar>
 <app-auth-top-bar *ngIf="authenticated"></app-auth-top-bar>
-<div class="w3-sidebar w3-bar-block" style="width:15%">
-  <a href="#" class="w3-bar-item w3-button">Link 1</a>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
-</div>
 
 <div class="container">
   <ul class="nav nav-tabs">
@@ -25,7 +20,13 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-2"></div>
+    <div class="col-lg-2">
+      <div class="sidenav" >
+        <a (click)="a" class="blue-link">Daily</a>
+        <a (click)="b" class="blue-link">Weekly</a>
+        <a (click)="c" class="blue-link">Monthly</a>
+      </div>
+    </div>
     <div class="col-lg-8">
       <app-my-bar-chart *ngIf="barChart"></app-my-bar-chart>
       <app-my-doughnut-chart *ngIf="donutChart"></app-my-doughnut-chart>
