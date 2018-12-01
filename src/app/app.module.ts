@@ -20,6 +20,8 @@ import { HelpComponent } from './help/help.component';
 import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 import {ChartsModule} from 'ng2-charts';
 import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.component';
+import { MyLineChartComponent } from './my-line-chart/my-line-chart.component';
+import { MyPolarChartComponent } from './my-polar-chart/my-polar-chart.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.
     SensordiagnosticComponent,
     HelpComponent,
     MyBarChartComponent,
-    MyDoughnutChartComponent
+    MyDoughnutChartComponent,
+    MyLineChartComponent,
+    MyPolarChartComponent
   ],
   imports: [BrowserModule, FlexLayoutModule, AppRoutingModule, NgbModule, ChartsModule],
   providers: [],

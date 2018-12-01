@@ -1,16 +1,42 @@
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/dash/bar-chart">Bar Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/dash/doughnut-chart">Doughnut Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/radar-chart"> Radar Chart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/pie-chart">Pie Chart</a>
-    </li>
-  </ul>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-sidebar w3-bar-block" style="width:15%"> 
+  <a href="#" class="w3-bar-item w3-button">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button">Link 3</a>
 </div>
+
+<div class="container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" (click) = "onClickBar()">Bar Chart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click) = "onClickDonut()">Doughnut Chart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click) = "onClickLine()">Line Chart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="onClickPolar()">Polar Chart</a>
+      </li>
+    </ul>
+  </div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-8">
+        <app-my-bar-chart *ngIf = "barChart"></app-my-bar-chart>
+        <app-my-doughnut-chart *ngIf = "donutChart"></app-my-doughnut-chart>
+        <app-my-line-chart *ngIf = "lineChart"></app-my-line-chart>
+        <app-my-polar-chart *ngIf = "polarChart"></app-my-polar-chart>
+
+    </div> 
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+</div>
+
+
