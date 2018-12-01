@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<app-non-auth-top-bar *ngIf="!authenticated"></app-non-auth-top-bar>
+<app-auth-top-bar *ngIf="authenticated"></app-auth-top-bar>
 <div class="w3-sidebar w3-bar-block" style="width:15%">
   <a href="#" class="w3-bar-item w3-button">Link 1</a>
   <a href="#" class="w3-bar-item w3-button">Link 2</a>

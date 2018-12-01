@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from '../_services/api.service';
 import { CookieService } from 'ngx-cookie-service';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { MyBarChartComponent } from '../my-bar-chart/my-bar-chart.component';
 
 @Component({
