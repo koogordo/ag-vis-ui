@@ -21,7 +21,6 @@ export class AuthTopBarComponent implements OnInit {
     if (this.cookieService.check('login')) {
       const user = JSON.parse(JSON.stringify(this.cookieService.get('login')));
       this.user = JSON.parse(user);
-      console.log(user);
       let body = new HttpParams()
         .set('username', user.email)
         .set('password', user.hash);

@@ -35,7 +35,9 @@ export class DashComponent implements OnInit {
   ngOnInit() {
     if (this.cookieService.check('login')) {
       const user = JSON.parse(JSON.stringify(this.cookieService.get('login')));
-      this.user = user;
+      this.user = JSON.parse(user);
+      console.log(this.user);
+      console.log();
       let body = new HttpParams()
         .set('username', user.email)
         .set('password', user.hash);
@@ -49,14 +51,14 @@ export class DashComponent implements OnInit {
           this.router.navigateByUrl('');
         }
       });
+
       const getSensorBody = new HttpParams().set('email', this.user.email);
-      console.log(getSensorBody);
       this.api.getSensors(getSensorBody).subscribe(res => {
         const result = JSON.parse(JSON.stringify(res));
         if (result) {
-          console.log(result);
+          this.sensors = res;
         } else {
-          console.log('response failure');
+          console.error("Sensor didn't load properly");
         }
       });
     } else {
