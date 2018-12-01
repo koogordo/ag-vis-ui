@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
+
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from '../_services/api.service';
-import { AuthCheckService } from '../_services/auth-check.service';
 import { CookieService } from 'ngx-cookie-service';
-=======
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { MyBarChartComponent } from '../my-bar-chart/my-bar-chart.component';
 
-
->>>>>>> d1a137495999ad7008012e60b5bd3f0430439085
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
   template: '<app-dash [childMessage]="parentMessage"></app-child>',
   styleUrls: ['./dash.component.css']
 })
-
 export class DashComponent implements OnInit {
-<<<<<<< HEAD
   private authenticated = false;
   private user;
+  public barChart = true;
+  public donutChart = false;
+  public lineChart = false;
+  public polarChart = false;
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -66,19 +65,7 @@ export class DashComponent implements OnInit {
         this.router.navigateByUrl('/');
       }
     });
-=======
-
-  public barChart = true;
-  public donutChart = false;
-  public lineChart = false;
-  public polarChart = false;
-
-  constructor() { }
-
-  ngOnInit() {
-
-    }
-
+  }
 
   public onClickBar() {
     this.barChart = true;
@@ -106,9 +93,5 @@ export class DashComponent implements OnInit {
     this.barChart = false;
     this.donutChart = false;
     this.polarChart = true;
->>>>>>> d1a137495999ad7008012e60b5bd3f0430439085
   }
 }
-
-
-
