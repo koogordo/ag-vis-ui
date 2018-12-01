@@ -12,7 +12,7 @@ export class MyLineChartComponent implements OnInit {
     responsive: true
   };
 
-  public lineChartLabels = ['2006', '2007', '2008', '2009'];
+  public lineChartLabels = [];
   public lineChartType = 'line';
   public lineChartLegend = true;
 
@@ -24,6 +24,10 @@ export class MyLineChartComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.lineChartLabels = this.chartData.map(reading => {
+      const date = new Date(reading.time);
+      return date.getDate();
+    });
     console.log(this.chartData[0]);
   }
 }
