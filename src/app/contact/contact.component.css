@@ -21,7 +21,10 @@ textarea{
  #info{
     margin: 50px;
  }
-
+ .jumbotron{
+   border-style: ridge;
+   border-radius: 2%;
+}
 .mt-lg{
    padding-top: 1rem;
 }
