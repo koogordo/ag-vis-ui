@@ -160,7 +160,7 @@ export class DashComponent implements OnInit {
     this.api.sensorOverTime(reqBody).subscribe(data => {
       const result = JSON.parse(JSON.stringify(data));
       this.chartData = result;
-      this.onClickBar();
+      this.onClickLine();
       this.dataLoading = false;
     });
   }
