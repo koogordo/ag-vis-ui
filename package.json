@@ -30,6 +30,7 @@
     "emailjs-com": "^2.3.2",
     "jquery": "^3.3.1",
     "ng2-charts": "^1.6.0",
+    "ng2-split": "^0.1.6",
     "ngx-cookie-service": "^2.0.2",
     "rxjs": "~6.3.3",
     "vis": "^4.21.0",
