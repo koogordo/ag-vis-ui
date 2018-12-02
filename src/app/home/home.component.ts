@@ -16,6 +16,9 @@ export class HomeComponent implements OnInit {
   // login form control center
   private authenticated = true;
   private user;
+  private loginFailMessage = null;
+  private regSuccessMessage = null;
+  private regFailMessage = null;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -79,20 +82,40 @@ export class HomeComponent implements OnInit {
   }
 
   public login() {
-    if (this.loginForm.status === 'VALID') {
-      let body = new HttpParams()
-        .set('username', this.loginForm.value.email)
-        .set('password', this.loginForm.value.password);
+    if (
+      this.loginForm.status === 'VALID' ||
+      (this.registerForm.value.email && this.registerForm.value.password)
+    ) {
+      let body = null;
+      if (this.loginForm.status === 'VALID') {
+        body = new HttpParams()
+          .set('username', this.loginForm.value.email)
+          .set('password', this.loginForm.value.password);
+      } else if (this.registerForm.status === 'VALID') {
+        body = new HttpParams()
+          .set('username', this.registerForm.value.email)
+          .set('password', this.registerForm.value.password);
+      }
+      console.log(body);
       this.api.login(body).subscribe(res => {
         let auth = JSON.parse(JSON.stringify(res));
         console.log(auth);
         if (auth.loggedIn) {
           this.cookieService.set('login', JSON.stringify(auth));
           this.router.navigateByUrl('/dash');
+        } else {
+          this.loginFailMessage = 'Invalid Username or Password';
+          setTimeout(() => {
+            this.loginFailMessage = null;
+          }, 2000);
         }
       });
     } else {
-      console.log({ status: 'fail', message: 'Invalid form' });
+      this.loginFailMessage =
+        'Please make sure form is valid before submitting.';
+      setTimeout(() => {
+        this.loginFailMessage = null;
+      }, 2000);
     }
   }
 
@@ -107,11 +130,23 @@ export class HomeComponent implements OnInit {
       // console.log(JSON.stringify(this.registerForm.value));
       // let data = JSON.stringify(this.registerForm.value);
       this.api.register(body).subscribe(res => {
-        console.log(res);
+        let registerRes = JSON.parse(JSON.stringify(res));
+        if (registerRes.response === 'User registered') {
+          console.log(registerRes);
+          this.login();
+        } else {
+          this.regFailMessage = 'Failed to register user.';
+          setTimeout(() => {
+            this.regFailMessage = null;
+          }, 2000);
+        }
       });
       this.registerForm.reset();
     } else {
-      console.log({ status: 'fail', message: 'Invalid form' });
+      this.regFailMessage = 'Please make sure form is valid before submitting.';
+      setTimeout(() => {
+        this.regFailMessage = null;
+      }, 2000);
     }
   }
 

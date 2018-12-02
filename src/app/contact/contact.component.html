@@ -1,72 +1,70 @@
 <app-non-auth-top-bar *ngIf="!authenticated"></app-non-auth-top-bar>
 <app-auth-top-bar *ngIf="authenticated"></app-auth-top-bar>
-<section class="cover">
-  <div class="cover-banner">
-    <div class="row">
-      <div class="jumbotron container-fluid">
-        <h1 class="text-center">Contact Us</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="jumbotron mt-lg">
+        <h1 class="display-4 text-info">Talk to Us!</h1>
+        <p class="lead">
+          We want to help you and to do that we need some input from you. Please
+          contact us with any questions or comments that you have.
+        </p>
       </div>
     </div>
-    <div class="split left">
-      <div class="row">
-        <div class="jumbotron container-fluid">
-          <h1 class="h1">Talk to us</h1>
-          <p id="info">
-            We want to help you and to do that we need some input from you.
-            Please contact us with any questions or comments that you have.
-          </p>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <ngb-alert
+        *ngIf="successMessage"
+        type="success"
+        (close)="successMessage = null"
+        >{{ successMessage }}</ngb-alert
+      >
+
+      <form>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Name</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            [(ngModel)]="name"
+            placeholder="Your Name"
+          />
         </div>
-      </div>
-    </div>
-    <div class="split right">
-      <div class="row">
-        <div class=" jumbotron mt-lg container-fluid">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <p>Name</p>
-            <input
-              type="text"
-              name="Username"
-              class="input form-control"
-              [(ngModel)]="Username"
-              placeholder="Your Name"
-            />
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <p>Email</p>
-            <input
-              type="email"
-              name="Useremail"
-              class="input form-control"
-              [(ngModel)]="Useremail"
-              placeholder="Your Email"
-            />
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <p>Subject</p>
-            <input
-              type="text"
-              name="Subject"
-              class="input form-control"
-              [(ngModel)]="Subject"
-              placeholder="Subject Line"
-            />
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <p>Your Questions/Comments</p>
-            <textarea
-              class="textarea form-control"
-              name="complaint"
-              [(ngModel)]="complaint"
-              placeholder="Questions and Comments"
-            ></textarea>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <button class="btn-primary" (click)="submit_button()">
-              Submit
-            </button>
-          </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="input form-control"
+            [(ngModel)]="email"
+            placeholder="Your Email"
+          />
         </div>
-      </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Subject</label>
+          <input
+            type="text"
+            name="subject"
+            class="input form-control"
+            [(ngModel)]="subject"
+            placeholder="Subject Line"
+          />
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Message</label>
+          <textarea
+            class="textarea form-control"
+            name="message"
+            [(ngModel)]="message"
+            placeholder="Questions and Comments"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-outline-info" (click)="submit_button()">
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
   </div>
-</section>
+</div>

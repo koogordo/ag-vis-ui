@@ -11,10 +11,11 @@ declare function emailer(a, b, c, d): any;
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  public Username = '';
-  public Useremail = '';
-  public Subject = '';
-  public complaint = '';
+  public name = '';
+  public email = '';
+  public subject = '';
+  public message = '';
+  private successMessage = null;
   private authenticated = false;
   private user;
   constructor(
@@ -45,7 +46,11 @@ export class ContactComponent implements OnInit {
   }
 
   public submit_button() {
-    emailer(this.Useremail, this.Subject, this.Username, this.complaint);
-    alert('Email Sent');
+    emailer(this.email, this.subject, this.name, this.message);
+    this.successMessage =
+      'Thank you, we will get back to you as soon as possible.';
+    setTimeout(() => {
+      this.successMessage = null;
+    }, 3000);
   }
 }

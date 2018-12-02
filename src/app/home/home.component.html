@@ -29,6 +29,12 @@
       </div>
     </div>
     <div class="col-lg-6">
+      <ngb-alert
+        *ngIf="loginFailMessage"
+        type="danger"
+        (close)="loginFailMessage = null"
+        >{{ loginFailMessage }}</ngb-alert
+      >
       <form [formGroup]="loginForm" (submit)="login()">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
@@ -115,6 +121,12 @@
             </button>
           </div>
           <div class="modal-body">
+            <ngb-alert
+              *ngIf="regFailMessage"
+              type="danger"
+              (close)="regFailMessage = null"
+              >{{ regFailMessage }}</ngb-alert
+            >
             <form [formGroup]="registerForm" (submit)="register()">
               <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
